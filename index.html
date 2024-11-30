@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skillify</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      padding: 4rem 1.5rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      
+    }
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f7f9fc;
+      padding: 3rem 1.5rem;
+    }
+
+    .hero-section .hero-text {
+      max-width: 50%;
+      color: #2b2d42;
+    }
+
+    .hero-section .hero-text h1 {
+      font-size: 3rem;
+      color: #0e387a;
+      margin-bottom: 1rem;
+    }
+
+    .hero-section .hero-text p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-section .hero-image img {
+      max-width: 60%;
+      border-radius: 10px;
+      margin-left: 30%;
+    }
+
+    .action-button {
+      padding: 0.75rem 1.5rem;
+      background-color: #0e387a;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .action-button:hover {
+      background-color: #0e387a;
+    }
+
+    /* Why Use Section */
+    .why-use-section {
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .why-use-section h2 {
+      font-size: 2.5rem;
+      color: #0e387a;
+      margin-bottom: 1rem;
+    }
+
+    .why-use-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #000;
+    }
+
+    .feature-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+
+    }
+    .feature-card:hover{
+      transform: scale(1.1);
+    }
+    .feature-card {
+      background-color: #9fafca;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 300px;
+      transition: 0.2s;
+      text-align: left;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      color: #0e387a;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      color: #000;
+    }
+
+    /* How It Works Section */
+    .how-it-works-section {
+      background-color: #f7f9fc;
+      text-align: center;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .step {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: left;
+      max-width: 300px;
+    }
+
+    .step-number {
+      font-size: 2.5rem;
+      color: #0e387a;
+      margin-bottom: 1rem;
+    }
+
+    .step p {
+      font-size: 1rem;
+      color: #2b2d42;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Navbar Styles */
+    
+
+    .logo img {
+      height: 230px;
+      margin-left: -45%;
+      margin-top: -5%;
+      cursor: pointer;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-item {
+      margin-left: 2rem;
+    }
+
+    .menu-link {
+      color: #fff;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .menu-link:hover {
+      text-decoration: underline;
+    }
+
+    .login-btn,
+    .logout-btn {
+      background-color: #9fafca;
+      color: #0e387a;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .login-btn:hover,
+    .logout-btn:hover {
+      background-color: #d90429;
+      color: white;
+    }
+
+    .profile-icon {
+      background-color: #9fafca;
+      color: #0e387a;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+      }
+
+      .hero-section .hero-text {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .hero-section .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-section .hero-image img {
+        margin-top: 2rem;
+        margin-left: 0;
+      }
+
+      .feature-cards {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .steps {
+        flex-direction: column;
+      }
+      
+    }
+    .footer {
+      background-color: #9fafca;
+      color: #000;
+      padding: 2rem 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 0 2rem;
+    }
+
+    .footer-column {
+      margin: 1rem;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      color: #0e387a;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column li {
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: color 0.1s;
+      color: #000;
+    }
+
+    .footer-column li:hover {
+      color: #0e387a;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #444;
+    }
+
+    .footer-social a {
+      margin: 0 1rem;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-social a:hover {
+      color: #0e387a;
+    }
+
+    .footer img {
+      width: 150px;
+      height: 30px;
+      margin-right: -8%;
+      margin-left: 2%;
+      margin-top: 1.5%;
+    }
+
+    .footer-bottom a {
+      color: #0e387a;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+    .typing-container {
+        font-style: italic;
+        color: #9fafca;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 2em;
+    }
+
+    .line {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 0;
+        animation: typing 1s steps(30, end) forwards, blink 0.5s step-end infinite alternate;
+    }
+
+    #line2 {
+        color: #0e387a;
+        animation-delay: 1s; /* Starts after the first line finishes */
+    }
+
+    @keyframes typing {
+        from { width: 0;        }
+        to { width: 100%;
+        }
+    }
+    section {
+      padding: 4rem 1.5rem;
+    }
+
+    /* General Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f7f9fc;
+      padding: 3rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section .hero-text {
+      max-width: 50%;
+      color: #2b2d42;
+    }
+
+    .hero-section .hero-text h1 {
+      font-size: 3rem;
+      color: #0e387a;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(-50px);
+      animation: slideInDown 1s ease-out forwards;
+    }
+
+    .hero-section .hero-text p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards 0.5s;
+    }
+
+    .action-button {
+      padding: 0.75rem 1.5rem;
+      background-color: #0e387a;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 2s ease-out forwards 1s;
+    }
+
+    .action-button:hover {
+      background-color: #034683;
+      transform: scale(1.1);
+    }
+
+    .hero-section .hero-image img {
+      max-width: 70%;
+      border-radius: 10px;
+      margin-left: 30%;
+      transform: scale(1);
+      animation: zoomIn 1.5s ease forwards;
+    }
+
+    /* Why Use Section */
+    .why-use-section {
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .why-use-section h2 {
+      font-size: 2.5rem;
+      color: #0e387a;
+      margin-bottom: 1rem;
+    }
+
+    .feature-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeInUp 1.5s ease-out forwards 0.5s;
+    }
+
+    .feature-card:hover {
+      transform: scale(1.1);
+    }
+
+    .feature-card {
+      background-color: #9fafca;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 300px;
+      transition: transform 0.2s;
+      text-align: left;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #9fafca;
+      color: #fff;
+      padding: 2rem 0;
+      font-family: Arial, sans-serif;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.9);
+        opacity: 0.5;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .hero-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f7f9fc;
+      padding: 3rem 1.5rem;
+    }
+
+    .hero-section .hero-text {
+      max-width: 50%;
+      color: #2b2d42;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .hero-section .hero-text h1 {
+      font-size: 3rem;
+      color: #0e387a;
+      margin-bottom: 1rem;
+    }
+
+    .hero-section .hero-image img {
+      max-width: 60%;
+      border-radius: 10px;
+      margin-left: 30%;
+      animation: slideIn 1.5s ease-out;
+    }
+
+    .action-button {
+      padding: 0.75rem 1.5rem;
+      background-color: #0e387a;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .action-button:hover {
+      background-color: #064582;
+    }
+
+    /* Feature Cards */
+    .feature-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background-color: #9fafca;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 300px;
+      text-align: left;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .feature-card.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Keyframes for Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    /* Sticky Navbar */
+    nav {
+      background-color: #0e387a;
+      padding: 0.5rem 2rem;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .menu-item a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .menu-item a:hover {
+      color: #f7d794;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .feature-cards {
+        flex-direction: column;
+      }
+    }
+    .testimonials-section {
+  text-align: center;
+  padding: 2em 1em;
+  background-color: #f9f9f9;
+}
+
+.testimonials-section h2 {
+  font-size: 2em;
+  margin-bottom: 1.5em;
+  color: #333;
+}
+
+.testimonials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5em;
+}
+
+.testimonial-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1.5em;
+  width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.photo-circle {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1em;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #0e387a;
+}
+
+.photo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feedback {
+  font-size: 1em;
+  color: #555;
+}
+
+.user-name {
+  display: block;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #0e387a;
+}
+
+    
+        
+  </style>
+</head>
+<body>
+  <nav >
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <ul class="menu">
+      <li class="menu-item"><a href="/" class="menu-link">Home</a></li>
+      <li class="menu-item"><a href="/" class="menu-link">Features</a></li>
+      <li class="menu-item"><a href="/" class="menu-link">About Us</a></li>
+    
+    </ul>
+  </nav>
+  <div class="home-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-text">
+        <h1 class="typing-container">
+          <span class="line" id="line1">Turning Silly Dreams into</span><br>
+          <span style="color: #2b2d42;" class="line highlight" id="line2">Skilled Realities</span>
+      </h1>
+      
+              <p>
+                Our job skills training programs empower unemployed youth by providing expert-led industry training to help them secure employment in reputable companies. Unlike our competitors, who require upfront payment for their programs—making 
+                them inaccessible to many—we ensure affordability and accessibility, enabling everyone to build relevant job skills and pursue their career aspirations.
+        </p>
+        <button class="action-button"> Start Learning Today </button>
+      </div>
+      <div class="hero-image">
+        <img src="https://media.licdn.com/dms/image/C5612AQESQvdOzZQK_w/article-cover_image-shrink_720_1280/0/1633939642359?e=2147483647&v=beta&t=nO-auZXvskNCSn4oheCbLsdRi1tUKq7rOI_BbXf5stA" alt="AI Title Validator">
+      </div>
+    </section>
+
+    <!-- Why Use AI Title Validator Section -->
+    <section class="why-use-section">
+      <h2>Why Choose Skillify?      </h2>
+      <p>We understand financial challenges shouldn't hold you back. At Skillify, you train now and pay only when you start earning.</p>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <h3>Learn Without Financial Barriers
+          </h3>
+          <p>Our courses are designed and delivered by industry experts to ensure you gain practical, job-ready skills.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Tailored Training for Real-World Careers
+          </h3>
+          <p>Our programs are designed to align with industry demands, ensuring you gain the skills to secure your dream job or career.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Personalized Skill Development
+          </h3>
+          <p>We focus on helping you grow in your chosen domain with targeted training and real-world application.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Job Placement Assistance
+          </h3>
+          <p>From training to employment, we support you every step of the way to help you achieve your career aspirations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="testimonials-section">
+      <h2>What Our Learners Say</h2>
+      <div class="testimonials">
+        <div class="testimonial-card">
+          <div class="photo-circle">
+            <img src="https://img.freepik.com/premium-photo/smiling-3d-cartoon-man-with-blue-eyes-wearing-blue-shirt-green-jacket_1142-206354.jpg" alt="User Photo">
+          </div>
+          <div class="feedback">
+            <p>"Skillify transformed my career! The training was exceptional, and I secured my dream job within weeks."</p>
+            <span class="user-name">- Jane Doe</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="photo-circle">
+            <img src="https://img.freepik.com/premium-photo/smiling-female-cartoon-character-giving-thumbs-uppositive-female-illustration-with-happy-gesture-approval-success_969354-8740.jpg" alt="User Photo">
+          </div>
+          <div class="feedback">
+            <p>"Thanks to Skillify, I developed industry-relevant skills and now run a successful freelance business."</p>
+            <span class="user-name">- John Smith</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="photo-circle">
+            <img src="https://img.freepik.com/premium-photo/smiling-businessman-cartoon-illustration-with-friendly-approachable-look-perfect-websites-presentations-social-media_1142-228853.jpg" alt="User Photo">
+          </div>
+          <div class="feedback">
+            <p>"The pay-after-success model gave me the confidence to invest in myself. Highly recommended!"</p>
+            <span class="user-name">- Priya Sharma</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h4>Skillify</h4>
+          <ul>
+            <li>Questions</li>
+            <li>Help</li>
+            <li>Chat</li>
+          </ul>
+          <div style="margin-top: 15%; color: #000;">
+            <h4>About Skillify</h4>
+      <p>Skillify helps individuals enhance their skills, connect with industry experts, and secure their dream careers. Pay only when you succeed!</p>
+    
+          </div>
+        </div>
+  
+        <div class="footer-column">
+          <h4>PRODUCTS</h4>
+          <ul>
+            <li>Teams</li>
+            <li>Advertising</li>
+            <li>Talent</li>
+          </ul>
+          <img style="height: 90%; width: 150%; margin-left: -60%; margin-top: -12%;margin-bottom: -30%;" src="logo-foot.png" alt="Logo">
+
+        </div>
+        
+  
+        <div class="footer-column">
+          <h4>COMPANY</h4>
+          <ul>
+            <li>About</li>
+            <li>Press</li>
+            <li>Work Here</li>
+            <li>Legal</li>
+            <li>Privacy Policy</li>
+            <li>Terms of Service</li>
+            <li>Contact Us</li>
+            <li>Cookie Settings</li>
+            <li>Cookie Policy</li>
+          </ul>
+        </div>
+  
+        <div class="footer-column">
+          <h4>SKILLIFY  NETWORK</h4>
+          <ul>
+            <li>Technology</li>
+            <li>Culture & Recreation</li>
+            <li>Life & Arts</li>
+            <li>Science</li>
+            <li>Professional</li>
+            <li>Business</li>
+            <li>API</li>
+            <li>Data</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-social">
+          <a href="#">Blog</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+        <p style="color: #000;">
+          Site design / logo © 2024 Skillify; user contributions licensed under 
+          <a href="#">CC BY-SA</a>.
+        </p>
+      </div>
+    </footer>
+  </div>
+  
+</body>
+<script>
+  // Intersection Observer for fade-in animations
+  const sections = document.querySelectorAll("section, .feature-card");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        } else {
+          entry.target.classList.remove("show");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+</script>
+</html>
